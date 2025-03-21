@@ -3,6 +3,9 @@ package com.msa.common.entity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
 public class Users {
     @Id
