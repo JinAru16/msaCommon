@@ -28,4 +28,7 @@ public class Users {
     @Column(nullable = false)
     private Role role;
 
+    @Embedded
+    Address address;
+
 }
