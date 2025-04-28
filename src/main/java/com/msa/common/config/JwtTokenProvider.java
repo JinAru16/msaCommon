@@ -1,10 +1,10 @@
 package com.msa.common.config;
 
+import com.msa.common.exception.UserException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
-import msa.jar.exception.UserException;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -41,6 +41,10 @@ public class JwtTokenProvider {
         } catch (Exception e) {
             throw new UserException(e.getMessage());
         }
+    }
+
+    public String getRole(String token){
+        return getClaims(token).get("role", String.class);
     }
 
     // ✅ JWT에서 Claims(페이로드) 추출하는 메서드
