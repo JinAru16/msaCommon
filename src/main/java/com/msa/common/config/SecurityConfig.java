@@ -1,5 +1,7 @@
 package com.msa.common.config;
 
+import com.msa.common.UserDetailsImpl;
+import com.msa.common.entity.Users;
 import com.msa.common.exception.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
