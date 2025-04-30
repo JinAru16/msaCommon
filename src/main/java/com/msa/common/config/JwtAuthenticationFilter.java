@@ -43,12 +43,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("jwt");
         Cookie[] cookies = request.getCookies();
+        if (cookies == null) {
+            return null;
+        }
         return Arrays.stream(cookies).filter(s -> s.getName().equals("jwt"))
-                 .map(Cookie::getValue)
+                .map(Cookie::getValue)
                 .findFirst()
                 .orElse(null);
-
     }
 }
