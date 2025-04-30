@@ -20,6 +20,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        String path = request.getRequestURI();
+        // JWT 토큰이 필요 없는 경로들에 대해 필터를 건너뜁니다
+        return path.startsWith("/api/auth/login") ||
+                path.startsWith("/api/user") ||
+                path.startsWith("/oauth2") ||
+                path.startsWith("/login");
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
